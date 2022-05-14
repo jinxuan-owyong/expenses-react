@@ -30,7 +30,7 @@ const ExpenseForm = function (props) {
     setUserInput((prevState) => {
       return {
         ...prevState,
-        date: new Date(newDate),  
+        date: new Date(newDate),
       };
     });
   };
@@ -47,12 +47,15 @@ const ExpenseForm = function (props) {
 
   const handleFormSubmit = function (ev) {
     ev.preventDefault();
+    const isEmpty = !(userInput.title && userInput.amount && userInput.date);
+    if (isEmpty) return;
+
     props.onSaveExpenseData(userInput);
     setUserInput({
-      title: '',
-      amount: '',
-      date: ''
-    })
+      title: "",
+      amount: "",
+      date: "",
+    });
   };
 
   return (
