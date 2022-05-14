@@ -1,11 +1,16 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-import './ExpenseItem.css';
-import Card from '../UI/Card';
-import ExpenseDate from './ExpenseDate';
+import React, { useState } from "react";
+import "./ExpenseItem.css";
+import Card from "../UI/Card";
+import ExpenseDate from "./ExpenseDate";
 
 const ExpenseItem = function (props) {
-  const { date, title, amount } = props;
+  const { date, amount } = props;
+  const [title, setTitle] = useState(props.title);
+
+  const handleButtonClick = function () {
+    setTitle("clicked");
+  };
 
   return (
     <Card className="expense-item">
@@ -13,6 +18,7 @@ const ExpenseItem = function (props) {
         <ExpenseDate date={date} />
         <h2>{title}</h2>
         <div className="expense-item__price">${amount}</div>
+        <button onClick={handleButtonClick}>Change title</button>
       </div>
     </Card>
   );

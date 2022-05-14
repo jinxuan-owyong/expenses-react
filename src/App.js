@@ -1,10 +1,14 @@
-import React from 'react';
-import Expenses from './components/Expenses/Expenses';
+import React from "react";
+import NewExpense from "./components/NewExpense/NewExpense";
+import Expenses from "./components/Expenses/Expenses";
 
 function App() {
+  const handleAddExpense = function (expense) {
+    console.log(expense);
+  };
   return (
     <div>
-      <h2>Let&apos;s get started!</h2>
+      <NewExpense onAddExpense={handleAddExpense} />
       <Expenses />
     </div>
   );
