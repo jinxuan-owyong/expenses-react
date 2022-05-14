@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState } from "react";
 import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
 
@@ -14,9 +14,19 @@ const NewExpense = function (props) {
     props.onAddExpense(expenseData);
   };
 
+  const [showForm, setShowForm] = useState(false);
+  const handleShowForm = () => setShowForm(true);
+  const handleHideForm = () => setShowForm(false);
+
   return (
     <div className="new-expense">
-      <ExpenseForm onSaveExpenseData={handleSaveExpenseData} />
+      {!showForm && <button onClick={handleShowForm}>Add New Expense</button>}
+      {showForm && (
+        <ExpenseForm
+          onSaveExpenseData={handleSaveExpenseData}
+          onCancel={handleHideForm}
+        />
+      )}
     </div>
   );
 };
